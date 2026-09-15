@@ -95,14 +95,11 @@ pip install -r requirements.txt
 ### 3. Training Execution
 
 ```bash
-# Run training using modular CLI entrypoint
-python train.py
-
-# Custom training configuration
-python train.py --batch-size 2 --accumulation-steps 8 --learning-rate 5e-5 --max-steps 50000
-
-# Run via backward compatibility wrapper
+# Run training using the unified main entrypoint
 python korean_llm_advanced_v3.py
+
+# Custom training configuration with CLI arguments
+python korean_llm_advanced_v3.py --batch-size 2 --accumulation-steps 8 --learning-rate 5e-5 --max-steps 50000
 ```
 
 > 💡 **Automated Datasets**: Automatically downloads `nlpai-lab/kullm-v2` and `beomi/KoAlpaca-v1.1a` datasets and caches them securely in local Parquet format.
@@ -118,13 +115,13 @@ Starting training automatically launches an integrated Tkinter & Matplotlib moni
 
 ```
 korean-llm-v3/
-├── train.py                           # [New] Modular CLI training entrypoint
-├── korean_llm_advanced_v3.py         # [Preserved] 100% backward-compatible script wrapper
+├── korean_llm_advanced_v3.py         # 🚀 [Main] Unified CLI entrypoint and backward-compatible core
 ├── requirements.txt                   # Dependency specification
 ├── .gitignore                         # Git tracking exclusions
 ├── LICENSE                            # GNU GPL-3.0 License
 │
 ├── src/                               # 📦 Modular Source Code
+│   ├── __init__.py                    # __version__ = "v3.1.0" & top-level symbol exports
 │   ├── config.py                      # TrainingConfig and global path constants
 │   ├── models/                        # Transformer architecture (KoreanLLM, RMSNorm, RoPE)
 │   ├── data/                          # DatasetManager, LocalKoreanDataset, collate_fn
@@ -231,7 +228,7 @@ Adjust the configuration as follows:
 <details>
 <summary><b>Q3. How do I resume interrupted training?</b></summary>
 <p>
-Run <code>python train.py --resume latest</code>. It automatically locates the latest step in <code>checkpoints/</code> and restores model weights, optimizer states, and scheduler steps.
+Run <code>python korean_llm_advanced_v3.py --resume latest</code>. It automatically locates the latest step in <code>checkpoints/</code> and restores model weights, optimizer states, and scheduler steps.
 </p>
 </details>
 

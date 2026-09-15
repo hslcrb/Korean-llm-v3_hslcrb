@@ -8,8 +8,7 @@
   - 개발 초기 원본 코드 및 히스토리의 완전한 영구 보존
   - 리팩토링 전후의 기능 대조 및 히스토리 추적 용도
 - **현재 프로젝트 권장 진입점**:
-  - 표준 학습 진입점: `python train.py`
-  - 하위 호환 래퍼: `python korean_llm_advanced_v3.py`
+  - 메인 학습 및 추론 진입점: `python korean_llm_advanced_v3.py` (CLI 옵션 지원)
   - 모듈화된 소스코드: `src/` 디렉토리
 
 ---
@@ -18,6 +17,5 @@
 - **Active Usage**: Not used directly for active training, inference, or current development.
 - **Archival Purpose**: Preserves the original monolithic implementation and historical development records intact.
 - **Recommended Entrypoints**:
-  - Training: `python train.py`
-  - Backward compatibility: `python korean_llm_advanced_v3.py`
+  - Main Training & Inference Entrypoint: `python korean_llm_advanced_v3.py` (with CLI argument support)
   - Modular codebase: `src/` directory

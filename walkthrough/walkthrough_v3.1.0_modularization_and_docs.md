@@ -9,7 +9,12 @@
 ## 1. Overview of Changes
 
 In version `v3.1.0`, the monolithic script `korean_llm_advanced_v3.py` (1,188 lines) was comprehensively refactored into a structured, production-ready Python package under `src/` without loss of logic or symbols.
-Additionally, repository infrastructure was enhanced with explicit dependency pinning, historical script preservation in `archive/`, bilingual documentation under `docs/`, and full backward compatibility.
+Furthermore, repository infrastructure was elevated to professional open-source standards:
+- **Unified Main Entrypoint**: `korean_llm_advanced_v3.py` was designated and enhanced as the sole `main.py` entrypoint of the project, integrating built-in CLI argument parsing (`argparse`) alongside full backward-compatible symbol re-exports. (An auxiliary `train.py` was evaluated and cleanly consolidated into `korean_llm_advanced_v3.py` to keep the root directory concise and single-purpose).
+- **Formalized Dependency Management**: Authored `requirements.txt` with tested library constraints and updated `.gitignore`.
+- **Historical Archiving**: Preserved the user's original un-refactored script at `archive/korean_llm_advanced_v3tresure.py` with an explanatory `archive/README.md`.
+- **Bilingual Documentation**: Established `docs/` containing developer memoirs (`DEVELOPMENT_STORY.md` / `_EN.md`) and technical guides (`ARCHITECTURE.md` / `_EN.md`).
+- **Standardized AI Guidelines**: Created `AGENTS.md` defining strict operating protocols, a 3-part versioning system (`vX.Y.Z`), and English walkthrough requirements in `walkthrough/`.
 
 ---
 
@@ -17,16 +22,16 @@ Additionally, repository infrastructure was enhanced with explicit dependency pi
 
 ```
 korean-llm-v3/
-├── korean_llm_advanced_v3.py         # Primary project entrypoint (main.py equivalent, 100% backward-compatible)
-├── train.py                           # Modular CLI entrypoint with argument parsing
+├── korean_llm_advanced_v3.py         # 🚀 Unified Primary Entrypoint (main.py equivalent with CLI parsing)
 ├── requirements.txt                   # Formalized dependency management
 ├── .gitignore                         # Build, checkpoint, and cache ignore rules
 ├── LICENSE                            # GNU GPL-3.0 License
 ├── README.md                          # Primary Korean documentation (polished hierarchy & style)
 ├── README_EN.md                       # Primary English documentation
+├── AGENTS.md                          # AI coding agent operational guidelines & versioning rules
 │
-├── src/                               # Modular Source Code Package
-│   ├── __init__.py                    # Top-level exports for convenient imports
+├── src/                               # 📦 Modular Source Code Package
+│   ├── __init__.py                    # __version__ = "v3.1.0" & top-level exports
 │   ├── config.py                      # TrainingConfig dataclass and global directory paths
 │   ├── models/
 │   │   ├── __init__.py
@@ -34,7 +39,7 @@ korean-llm-v3/
 │   │   └── korean_llm.py              # KoreanLLM 1.09B model implementation
 │   ├── data/
 │   │   ├── __init__.py
-│   │   ├── dataset_manager.py         # Multi-strategy downloader (standard/stream/force) & Parquet cache
+│   │   ├── dataset_manager.py         # Multi-strategy downloader & Parquet cache
 │   │   └── dataset.py                 # LocalKoreanDataset with instruction formatting & collate_fn
 │   ├── generation/
 │   │   ├── __init__.py
@@ -50,17 +55,17 @@ korean-llm-v3/
 │       ├── logging_utils.py           # Central logger and loss history handlers
 │       └── checkpoint.py              # save_checkpoint, load_checkpoint, find_latest_checkpoint
 │
-├── docs/                              # Project Documentation
+├── docs/                              # 📚 Project Documentation
 │   ├── DEVELOPMENT_STORY.md           # Developer journey and reflections (Korean)
 │   ├── DEVELOPMENT_STORY_EN.md        # Project Development Journey (English)
 │   ├── ARCHITECTURE.md                # Mathematical breakdown and VRAM optimization guide (Korean)
 │   └── ARCHITECTURE_EN.md             # Model Architecture & Optimization Guide (English)
 │
-├── archive/                           # Legacy Historical Preservation
+├── archive/                           # 🗄️ Legacy Historical Preservation
 │   ├── README.md                      # Archive notice explaining preservation purpose
 │   └── korean_llm_advanced_v3tresure.py # Untouched pre-refactoring single-file original script
 │
-├── walkthrough/                       # Major Milestone Walkthrough Reports (English)
+├── walkthrough/                       # 📋 Major Milestone Walkthrough Reports (English)
 │   └── walkthrough_v3.1.0_modularization_and_docs.md
 │
 ├── checkpoints/                       # Local model checkpoint weights (.pth)
@@ -72,36 +77,26 @@ korean-llm-v3/
 
 ## 3. Key Achievements & Verification
 
-### 1) 100% Backward Compatibility
-All 24 public symbols in `korean_llm_advanced_v3.py` were verified through programmatic introspection tests:
-- `LOG_DIR`, `TrainingConfig`, `logger`, `loss_history`, `save_loss_history`, `load_loss_history`, `save_checkpoint`, `load_checkpoint`, `find_latest_checkpoint`, `RMSNorm`, `precompute_freqs_cis`, `apply_rotary_emb`, `SwiGLU`, `Attention`, `TransformerBlock`, `KoreanLLM`, `DatasetManager`, `ensure_datasets_dir`, `LocalKoreanDataset`, `collate_fn`, `generate`, `TrainingMonitorGUI`, `setup_distributed`, `main`
-- Result: **All 24 legacy symbols preserved and functional.**
+### 1) Unified CLI Entrypoint & Backward Compatibility
+`korean_llm_advanced_v3.py` now parses CLI arguments while maintaining 100% symbol compatibility.
+Tested via programmatic inspection:
+- `__version__`, `LOG_DIR`, `TrainingConfig`, `logger`, `loss_history`, `save_loss_history`, `load_loss_history`, `save_checkpoint`, `load_checkpoint`, `find_latest_checkpoint`, `RMSNorm`, `precompute_freqs_cis`, `apply_rotary_emb`, `SwiGLU`, `Attention`, `TransformerBlock`, `KoreanLLM`, `DatasetManager`, `ensure_datasets_dir`, `LocalKoreanDataset`, `collate_fn`, `generate`, `TrainingMonitorGUI`, `setup_distributed`, `main`, `parse_args`
+- Result: **All symbols preserved and verified.**
 
-### 2) Forward & Backward Pass Verification
-A downscaled instance of `KoreanLLM` (`dim=64, n_layers=2, n_heads=2`) was subjected to a dummy tensor forward pass:
-- Logits shape: `(2, 8, 1000)` verified.
-- Cross-entropy loss computed cleanly.
-- KV Cache tensors generated across both layers.
-- Result: **Model math and tensor flow intact.**
+### 2) Model Forward Pass & Math Verification
+A scaled-down instance of `KoreanLLM` (`dim=64, n_layers=2, n_heads=2`) successfully executed a forward pass with dummy tokens:
+- Output logits shape: `(2, 8, 1000)`
+- Loss calculation: Non-null scalar cross-entropy loss
+- KV Cache: Output caches across both layers verified.
 
-### 3) Dependency Installation
-All required dependencies were installed and verified under Python 3.12:
-- PyTorch: `2.14.0`
-- Transformers: `5.17.0`
-- Datasets: `5.0.1`
-- bitsandbytes: `0.50.2`
-- Matplotlib: `3.11.2`
-- Pandas: `3.0.5`
-- PyArrow: `25.0.1`
-
-### 4) Legacy Preservation
-The user's original backup file was moved to `archive/korean_llm_advanced_v3tresure.py` without any modification, accompanied by `archive/README.md` clarifying its historical purpose.
+### 3) Python 3.12 Package Integrity
+All modules under `src/` import cleanly without circular dependencies or runtime warnings.
 
 ---
 
 ## 4. Git Commit History for v3.1.0
 
-The following functional commits were recorded conforming to `<type>: <Korean message>`:
+The following functional commits track the milestones achieved in v3.1.0:
 
 1. `3382b91 chore: 의존성 관리 파일(requirements.txt) 추가`
 2. `1486845 chore: Git 추적 제외 목록(.gitignore) 추가`
@@ -113,3 +108,6 @@ The following functional commits were recorded conforming to `<type>: <Korean me
 8. `76e6c45 chore: 원본 스크립트 보존을 위한 archive 디렉토리 생성 및 이전`
 9. `5ea92dc docs: 개발 스토리 및 아키텍처 기술 가이드 문서화 (한/영 지원)`
 10. `8dba185 docs: 메인 README 개편 및 영문 README 추가, 아카이브 안내 반영`
+11. `a2dcd9b docs: AI 에이전트 지침서(AGENTS.md) 및 v3.1.0 영문 워크스루 보고서 추가`
+12. `refactor: CLI 인자 파싱 기능을 korean_llm_advanced_v3.py로 통합 및 train.py 정리`
+13. `docs: 단일 메인 진입점 변경사항 문서 반영 및 v3.1.0 워크스루 갱신`

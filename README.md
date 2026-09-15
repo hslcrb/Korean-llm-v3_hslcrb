@@ -96,14 +96,11 @@ pip install -r requirements.txt
 ### 3. 학습 실행
 
 ```bash
-# 기본 설정으로 학습 시작 (모듈형 CLI 진입점)
-python train.py
-
-# 하이퍼파라미터 커스텀 실행
-python train.py --batch-size 2 --accumulation-steps 8 --learning-rate 5e-5 --max-steps 50000
-
-# 기존 방식(하위 호환 래퍼)으로 실행
+# 기본 설정으로 학습 시작 (단일 메인 진입점)
 python korean_llm_advanced_v3.py
+
+# 하이퍼파라미터 커스텀 실행 (CLI 인자 지원)
+python korean_llm_advanced_v3.py --batch-size 2 --accumulation-steps 8 --learning-rate 5e-5 --max-steps 50000
 ```
 
 > 💡 **자동 데이터셋 다운로드**: 실행 시 `nlpai-lab/kullm-v2` 및 `beomi/KoAlpaca-v1.1a` 데이터셋을 자동으로 내려받아 로컬 Parquet으로 안전하게 캐싱합니다.
@@ -119,13 +116,13 @@ python korean_llm_advanced_v3.py
 
 ```
 korean-llm-v3/
-├── train.py                           # [신규] 모듈형 CLI 학습 진입점
-├── korean_llm_advanced_v3.py         # [보존] 기존 스크립트 100% 하위 호환 래퍼
+├── korean_llm_advanced_v3.py         # 🚀 [메인] CLI 인자 지원 및 하위 호환 단일 메인 진입점
 ├── requirements.txt                   # 필수 라이브러리 명세
 ├── .gitignore                         # 빌드/체크포인트/캐시 추적 제외
 ├── LICENSE                            # GNU GPL-3.0 라이선스
 │
 ├── src/                               # 📦 모듈화된 핵심 소스코드
+│   ├── __init__.py                    # __version__ = "v3.1.0" 및 주요 심볼 export
 │   ├── config.py                      # 경로 상수 및 TrainingConfig 정의
 │   ├── models/                        # 트랜스포머 아키텍처 (KoreanLLM, RMSNorm, RoPE 등)
 │   ├── data/                          # DatasetManager, LocalKoreanDataset, collate_fn
@@ -235,7 +232,7 @@ train(config)
 <details>
 <summary><b>Q3. 학습 도중 중단되었을 때 이어서 학습하려면 어떻게 하나요?</b></summary>
 <p>
-<code>python train.py --resume latest</code>를 실행하면 <code>checkpoints/</code> 디렉토리에서 가장 최근 스텝 번호의 가중치를 자동 감지하여 옵티마이저 및 스케줄러 상태까지 완벽하게 복원합니다.
+<code>python korean_llm_advanced_v3.py --resume latest</code>를 실행하면 <code>checkpoints/</code> 디렉토리에서 가장 최근 스텝 번호의 가중치를 자동 감지하여 옵티마이저 및 스케줄러 상태까지 완벽하게 복원합니다.
 </p>
 </details>
 

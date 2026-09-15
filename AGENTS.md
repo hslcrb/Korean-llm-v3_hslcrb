@@ -8,9 +8,9 @@ This document contains mandatory operating instructions, architectural guideline
 
 - **Project Identity**: `Korean LLM Advanced v3` — an open-source 1.09B parameter Korean-centric decoder-only Transformer language model built from scratch.
 - **Primary Entrypoint (`main.py` Role)**:
-  - **`korean_llm_advanced_v3.py` serves as the `main.py` of this project.**
-  - All high-level execution, legacy scripts, and external runners rely on `korean_llm_advanced_v3.py`.
-  - While modular source code resides under `src/` and a dedicated CLI entrypoint exists at `train.py`, `korean_llm_advanced_v3.py` MUST ALWAYS be preserved as the primary, 100% backward-compatible entrypoint.
+  - **`korean_llm_advanced_v3.py` serves as the sole `main.py` of this project.**
+  - All high-level execution, legacy scripts, CLI runners, and external tools rely directly on `korean_llm_advanced_v3.py`.
+  - While modular source code resides under `src/`, `korean_llm_advanced_v3.py` MUST ALWAYS be preserved as the single primary, 100% backward-compatible entrypoint with built-in CLI argument parsing.
   - Never delete, replace with dummy code, or break symbol compatibility in `korean_llm_advanced_v3.py`.
 
 ---
@@ -119,7 +119,7 @@ All Git commits must strictly follow a **functional, feature-based unit structur
 - **핵심 진입점 (`main.py`의 역할)**:
   - **`korean_llm_advanced_v3.py`가 본 프로젝트에서는 실질적인 `main.py` 역할을 수행합니다.**
   - 모든 상위 수준 실행, 기존 스크립트, 외부 실행 도구들은 `korean_llm_advanced_v3.py`를 기준으로 작동합니다.
-  - 소스코드가 `src/` 디렉토리로 모듈화되고 `train.py`라는 CLI 진입점이 별도로 존재하더라도, `korean_llm_advanced_v3.py`는 100% 하위 호환성을 갖춘 메인 진입점으로 영구 보존되어야 합니다.
+  - 소스코드가 `src/` 디렉토리로 모듈화되었더라도, `korean_llm_advanced_v3.py`는 자체적으로 CLI 인자 파싱을 완벽 지원하며 100% 하위 호환성을 갖춘 단일 메인 진입점으로 영구 보존되어야 합니다.
   - 에이전트는 `korean_llm_advanced_v3.py`를 임의로 삭제하거나 빈 껍데기 코드로 대체하거나 기존 심볼 호환성을 깨뜨려서는 안 됩니다.
 
 ---
