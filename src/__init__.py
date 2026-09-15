@@ -1,3 +1,5 @@
+__version__ = "v3.1.0"
+
 from src.config import TrainingConfig
 from src.models.korean_llm import KoreanLLM
 from src.data.dataset_manager import DatasetManager
@@ -9,6 +11,7 @@ from src.utils.checkpoint import save_checkpoint, load_checkpoint, find_latest_c
 from src.utils.logging_utils import logger, loss_history, save_loss_history, load_loss_history
 
 __all__ = [
+    "__version__",
     "TrainingConfig",
     "KoreanLLM",
     "DatasetManager",
