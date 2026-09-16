@@ -46,3 +46,8 @@ logs/
 *.pth
 *.pt
 *.parquet
+
+# Release binaries (GitHub Releases only — do NOT commit)
+*.zip
+dist/
+build/
