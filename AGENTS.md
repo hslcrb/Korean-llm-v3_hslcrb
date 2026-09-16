@@ -82,7 +82,38 @@ All Git commits must strictly follow a **functional, feature-based unit structur
 
 ---
 
-## 5. Repository Structure & Integrity Rules
+## 5. Branching Strategy & Mandatory `--no-ff` Merge Policy
+
+All developers and AI agents must follow a structured branching workflow:
+
+### 1) Branch Naming Conventions
+- **Feature Branches**: `feature/<version>-<short_description>` (e.g., `feature/v3.1.0-modularization`)
+- **Bugfix Branches**: `fix/<issue_slug>` (e.g., `fix/dataloader-windows-crash`)
+- **Documentation Branches**: `docs/<topic_slug>` (e.g., `docs/architecture-guide`)
+
+### 2) Strict `--no-ff` (No Fast-Forward) Rule
+- **Fast-forward merges into `main` are STRICTLY PROHIBITED.**
+- Every merge into `main` MUST be performed with the `--no-ff` flag:
+  ```bash
+  git checkout main
+  git merge --no-ff <branch_name> -m "<type>: <Korean merge commit message>"
+  ```
+- **Rationale**: `--no-ff` creates an explicit merge commit, preserving historical branch context, feature boundaries, and clear audit points for rollbacks.
+
+---
+
+## 6. Developer Identities & Collaboration Context
+
+- **Fork Maintainer**: **`hslcrb` — High School Senior Developer (대한민국 고등학교 3학년 학생 개발자)**.
+  - Led the architectural refactoring, modular package separation (`src/`), historical script archiving, automated test suite, and CLI unification.
+- **Original Creator**: **`seoan1024` — Middle School Student Developer (중학교 2학년 학생 개발자)**.
+  - Conceived and trained the original 541M (v1) and 1.09B (v2/v3) Korean language models from scratch.
+- **Tone & Context for PRs and Contributions**:
+  - All contributions, PR descriptions, and public communications should celebrate this collaborative spirit: a high school senior developer refining and empowering the courageous foundation built by a middle school student developer.
+
+---
+
+## 7. Repository Structure & Integrity Rules
 
 1. **`korean_llm_advanced_v3.py`**:
    - The operational core and `main.py` equivalent of the repository.
@@ -190,7 +221,38 @@ walkthrough_v<X>.<Y>.<Z>_<간결한_설명_slug>.md
 
 ---
 
-## 5. 저장소 구조 및 무결성 보존 규칙
+## 5. 브랜치 전략 및 필수 `--no-ff` (No Fast-Forward) 머지 규칙
+
+모든 개발자와 AI 에이전트는 체계적인 브랜치 워크플로우를 따라야 합니다:
+
+### 1) 브랜치 명명 규칙
+- **기능 브랜치 (Feature)**: `feature/<version>-<간결한_설명>` (예: `feature/v3.1.0-modularization`)
+- **버그 수정 브랜치 (Bugfix)**: `fix/<이슈_슬러그>` (예: `fix/dataloader-windows-crash`)
+- **문서 브랜치 (Documentation)**: `docs/<주제_슬러그>` (예: `docs/architecture-guide`)
+
+### 2) 엄격한 `--no-ff` (No Fast-Forward) 머지 원칙
+- **`main` 브랜치로의 Fast-Forward 머지는 절대 금지됩니다.**
+- `main` 브랜치로 병합할 때는 반드시 `--no-ff` 플래그를 사용해야 합니다:
+  ```bash
+  git checkout main
+  git merge --no-ff <브랜치명> -m "<영어 접두어>: <한국어 머지 커밋 메시지>"
+  ```
+- **사유**: `--no-ff` 머지는 명시적인 머지 커밋을 남겨 브랜치 히스토리와 기능 단위 경계를 온전히 보존하며, 추후 롤백이나 감사 시 명확한 기준점을 제공합니다.
+
+---
+
+## 6. 개발자 정체성 및 협업 컨텍스트
+
+- **포크 메인테이너**: **`hslcrb` — 대한민국 고등학교 3학년 학생 개발자**.
+  - 구조적 아키텍처 리팩토링, 모듈화 패키지(`src/`) 분리, 레거시 원본 아카이빙, 자동화 검증 체계 구축, CLI 단일 진입점 통합을 주도함.
+- **원작자**: **`seoan1024` — 중학교 2학년 학생 개발자**.
+  - 541M(v1) 및 1.09B(v2/v3) 한국어 모델을 밑바닥부터 독자적으로 구상하고 직접 학습시킨 최초 개발자.
+- **PR 및 컨트리뷰션 태도**:
+  - 중학교 2학년 학생의 용기 있는 독창적 도전에 깊은 감명을 받아, 고등학교 3학년 선배 학생 개발자가 구조적 안정성과 완성도를 높여 함께 발전시켜 나가는 따뜻한 오픈소스 협업 정신을 지향합니다.
+
+---
+
+## 7. 저장소 구조 및 무결성 보존 규칙
 
 1. **`korean_llm_advanced_v3.py`**:
    - 저장소의 핵심이자 `main.py`에 해당하는 메인 파일입니다.
