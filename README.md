@@ -299,11 +299,31 @@ Windows에서는 파이썬 멀티프로세싱 방식으로 인해 <code>num_work
 
 ---
 
+## 👥 기여자 (Contributors)
+
+이 프로젝트는 한국어 오픈소스 LLM 생태계를 발전시키기 위한 학생 개발자들의 순수한 열정과 협업으로 이루어졌습니다.
+
+<div align="center">
+
+| 🐣 원작자 (Original Creator) | 🚀 모듈화 & 메인테이너 (Maintainer) |
+| :---: | :---: |
+| <a href="https://github.com/seoan1024"><img src="https://github.com/seoan1024.png?size=100" width="100px;" style="border-radius:50%;" alt="seoan1024"/><br /><sub><b>seoan1024</b></sub></a><br /><sub>대한민국 중학교 2학년 학생 개발자</sub><br /><sub>초기 1.09B 독자 아키텍처 구현 & 사전학습</sub> | <a href="https://github.com/hslcrb"><img src="https://github.com/hslcrb.png?size=100" width="100px;" style="border-radius:50%;" alt="hslcrb"/><br /><sub><b>hslcrb</b></sub></a><br /><sub>대한민국 고등학교 3학년 학생 개발자</sub><br /><sub>src/ 모듈화, 아키텍처/문서 분리 & CLI 파이프라인 통합</sub> |
+
+<br />
+
+<a href="https://github.com/hslcrb/Korean-llm-v3_hslcrb/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=hslcrb/Korean-llm-v3_hslcrb" alt="Contributors" />
+</a>
+
+</div>
+
+---
+
 ## 📜 라이선스 및 기여
 
 - **License**: [GNU General Public License v3.0 (GPL-3.0)](./LICENSE)
-- **개발자**: [seoan1024](https://github.com/seoan1024) (Contact: seoan102410@gmail.com)
-- 버그 제보, 아키텍처 제안, 풀 리퀘스트(PR)는 언제나 환영합니다!
+- **문의 및 제안**: [GitHub Issues](https://github.com/hslcrb/Korean-llm-v3_hslcrb/issues) 또는 원작자 메일(seoan102410@gmail.com)
+- 버그 제보, 아키텍처 제안, 풀 리퀘스트(PR)는 언제나 따뜻하게 환영합니다!
 
 <div align="center">
 

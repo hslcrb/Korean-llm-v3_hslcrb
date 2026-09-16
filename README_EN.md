@@ -276,11 +276,31 @@ This project is licensed under the <b>GNU General Public License v3.0 (GPL-3.0)<
 
 ---
 
+## 👥 Contributors
+
+This project represents the passion and collaborative spirit of student developers advancing the Korean open-source LLM ecosystem.
+
+<div align="center">
+
+| 🐣 Original Creator | 🚀 Modularization & Maintainer |
+| :---: | :---: |
+| <a href="https://github.com/seoan1024"><img src="https://github.com/seoan1024.png?size=100" width="100px;" style="border-radius:50%;" alt="seoan1024"/><br /><sub><b>seoan1024</b></sub></a><br /><sub>8th Grade Middle School Developer</sub><br /><sub>Conceived, built & pretrained the 1.09B model from scratch</sub> | <a href="https://github.com/hslcrb"><img src="https://github.com/hslcrb.png?size=100" width="100px;" style="border-radius:50%;" alt="hslcrb"/><br /><sub><b>hslcrb</b></sub></a><br /><sub>High School Senior Developer</sub><br /><sub>Architectural refactoring, modular package separation & CLI pipeline</sub> |
+
+<br />
+
+<a href="https://github.com/hslcrb/Korean-llm-v3_hslcrb/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=hslcrb/Korean-llm-v3_hslcrb" alt="Contributors" />
+</a>
+
+</div>
+
+---
+
 ## 📜 License & Contributions
 
 - **License**: [GNU General Public License v3.0 (GPL-3.0)](./LICENSE)
-- **Developer**: [seoan1024](https://github.com/seoan1024) (Contact: seoan102410@gmail.com)
-- Pull requests, discussions, and feature suggestions are warmly welcomed!
+- **Discussion & Issues**: [GitHub Issues](https://github.com/hslcrb/Korean-llm-v3_hslcrb/issues) or reach out to the original creator (seoan102410@gmail.com)
+- Pull requests, architecture suggestions, and collaborative discussions are warmly welcomed!
 
 <div align="center">
 
