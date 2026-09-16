@@ -119,3 +119,35 @@ The following functional commits track the milestones achieved in v3.1.0:
 13. `114465f docs: 단일 메인 진입점 변경사항 문서 반영 및 v3.1.0 워크스루 갱신`
 14. `8c4ff46 docs: 기여자(Contributors) 프로필 섹션 추가 및 브랜치 규칙(AGENTS.md) 갱신`
 15. `6af228c chore: PyInstaller 빌드 스펙(KoreanLLM-v3.1.0.spec) 추가`
+16. `(current) fix: Windows 콘솔 CP949 인코딩 충돌 방지 및 더블클릭 대화형 메뉴 UX 개선`
+
+---
+
+## 5. Windows EXE Hotfix — CP949 Unicode Crash (Post-v3.1.0)
+
+**Date**: 2026-09-16  
+**Triggered by**: User-reported crash on double-clicking `KoreanLLM-v3.1.0.exe` — black CLI window appeared briefly before crashing with `UnicodeEncodeError`.
+
+### Root Cause Analysis
+
+The default Windows Korean console (`cmd.exe`, PowerShell) uses **Code Page 949 (CP949)** as its encoding. Printing emoji characters (`🇰🇷`, `❌`, `👋`, `💡`) used in the startup banner and error messages raised a fatal `UnicodeEncodeError` before any try/except block could catch it, causing the PyInstaller-packaged executable to exit immediately.
+
+Additionally, the binary was missing `matplotlib` and `tkinter` bundle entries in the PyInstaller spec, which would have caused the GUI monitor to fail to initialize on systems where those were not pre-loaded.
+
+### Fixes Applied
+
+| File | Change |
+|---|---|
+| `korean_llm_advanced_v3.py` | Added `ctypes.windll.kernel32.SetConsoleOutputCP(65001)` to force UTF-8 code page at startup |
+| `korean_llm_advanced_v3.py` | Added `io.TextIOWrapper` fallback for stdout/stderr if `reconfigure` is unavailable |
+| `korean_llm_advanced_v3.py` | Refactored `parse_args()` into `get_arg_parser()` + `parse_args(args_list)` for testability |
+| `korean_llm_advanced_v3.py` | Added interactive launch menu on double-click (no CLI args): shows hardware info, 3 training modes, and help |
+| `src/utils/logging_utils.py` | Added `SetConsoleOutputCP(65001)` and UTF-8 `reconfigure` guard at module import time |
+| `KoreanLLM-v3.1.0.spec` | Added `matplotlib` to `collect_all()` packages and `tkinter` / `matplotlib.backends.backend_tkagg` to `hiddenimports` |
+
+### Verification
+
+- `KoreanLLM-v3.1.0.exe --help` → **exit code 0**, full help text rendered correctly with emoji intact
+- Interactive menu (piped stdin) → model loads tokenizer and begins dataset download (as expected behavior)
+- Build: `pyinstaller --noconfirm --clean KoreanLLM-v3.1.0.spec` → **exit code 0**, `dist/KoreanLLM-v3.1.0/` produced successfully
+- Release asset `KoreanLLM-v3.1.0-windows-x64.zip` (300 MB) re-uploaded to [GitHub Releases v3.1.0](https://github.com/hslcrb/Korean-llm-v3_hslcrb/releases/tag/v3.1.0) with `--clobber`
