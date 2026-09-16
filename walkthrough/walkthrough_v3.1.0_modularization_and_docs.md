@@ -89,8 +89,14 @@ A scaled-down instance of `KoreanLLM` (`dim=64, n_layers=2, n_heads=2`) successf
 - Loss calculation: Non-null scalar cross-entropy loss
 - KV Cache: Output caches across both layers verified.
 
-### 3) Python 3.12 Package Integrity
-All modules under `src/` import cleanly without circular dependencies or runtime warnings.
+### 4) PyInstaller Standalone Windows Binary & GitHub Release
+- Successfully built `KoreanLLM-v3.1.0.exe` bundling PyTorch, Transformers, and bitsandbytes runtime dependencies.
+- Packaged into `KoreanLLM-v3.1.0-windows-x64.zip` (303 MB) and published to official GitHub Releases at [v3.1.0](https://github.com/hslcrb/Korean-llm-v3_hslcrb/releases/tag/v3.1.0).
+
+### 5) Upstream Open-Source Contribution (seoan1024/korean-llm-v3)
+- Submitted official Pull Request [#2](https://github.com/seoan1024/Korean-llm-v3/pull/2) to the original creator (`seoan1024`) titled:
+  `[v3.1.0] 중2 개발자의 열정에 감명받은 고3 개발자의 모듈화(src/), 문서화 및 100% 하위호환 기여`.
+- Explicitly documented the collaboration context between high school senior developer `hslcrb` and middle school student developer `seoan1024`, including AI pair-programming metrics (Gemini 3.8 Flash Medium & High in a 7:3 ratio).
 
 ---
 
@@ -109,5 +115,7 @@ The following functional commits track the milestones achieved in v3.1.0:
 9. `5ea92dc docs: 개발 스토리 및 아키텍처 기술 가이드 문서화 (한/영 지원)`
 10. `8dba185 docs: 메인 README 개편 및 영문 README 추가, 아카이브 안내 반영`
 11. `a2dcd9b docs: AI 에이전트 지침서(AGENTS.md) 및 v3.1.0 영문 워크스루 보고서 추가`
-12. `refactor: CLI 인자 파싱 기능을 korean_llm_advanced_v3.py로 통합 및 train.py 정리`
-13. `docs: 단일 메인 진입점 변경사항 문서 반영 및 v3.1.0 워크스루 갱신`
+12. `7d11aea refactor: CLI 인자 파싱 기능을 korean_llm_advanced_v3.py로 통합 및 train.py 정리`
+13. `114465f docs: 단일 메인 진입점 변경사항 문서 반영 및 v3.1.0 워크스루 갱신`
+14. `8c4ff46 docs: 기여자(Contributors) 프로필 섹션 추가 및 브랜치 규칙(AGENTS.md) 갱신`
+15. `6af228c chore: PyInstaller 빌드 스펙(KoreanLLM-v3.1.0.spec) 추가`
