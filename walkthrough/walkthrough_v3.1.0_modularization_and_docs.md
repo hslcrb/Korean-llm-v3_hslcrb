@@ -119,7 +119,8 @@ The following functional commits track the milestones achieved in v3.1.0:
 13. `114465f docs: 단일 메인 진입점 변경사항 문서 반영 및 v3.1.0 워크스루 갱신`
 14. `8c4ff46 docs: 기여자(Contributors) 프로필 섹션 추가 및 브랜치 규칙(AGENTS.md) 갱신`
 15. `6af228c chore: PyInstaller 빌드 스펙(KoreanLLM-v3.1.0.spec) 추가`
-16. `(current) fix: Windows 콘솔 CP949 인코딩 충돌 방지 및 더블클릭 대화형 메뉴 UX 개선`
+16. `b6d0f1a docs: v3.1.0 워크스루 보고서에 바이너리 릴리즈 및 업스트림 PR 기여 내역 반영`
+17. `31af46d chore: 릴리즈 바이너리 zip Git 추적 제외 및 .gitignore 갱신 (GitHub Releases 전용)`
 
 ---
 
